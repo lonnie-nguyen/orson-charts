@@ -33,6 +33,8 @@
 package org.jfree.chart3d.graphics3d;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -40,9 +42,9 @@ import org.junit.jupiter.api.Test;
  * @author dgilbert
  */
 public class Rotate3DTest {
-    
+
     private static final double EPSILON = 0.0000001;
-    
+
     @Test
     public void testGeneral() {
         Rotate3D r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Math.PI);
@@ -51,7 +53,7 @@ public class Rotate3DTest {
         assertEquals(-1, p.y, EPSILON);
         assertEquals(-1, p.z, EPSILON);
     }
-    
+
     @Test
     public void test2() {
         ViewPoint3D v1 = new ViewPoint3D(-1.675516f, -2.6179938f, 25.874374f, 0);
@@ -60,12 +62,37 @@ public class Rotate3DTest {
         ViewPoint3D v2 = new ViewPoint3D(p, 0);
     }
 
+    // NEW TEST CASES BY MSWE GROUP
     @Test
-    public void test3()  {
+    public void test3() {
         Rotate3D r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, 0);
         Point3D p = r.applyRotation(1, 1, 1);
         assertEquals(1, p.x, EPSILON);
         assertEquals(1, p.y, EPSILON);
         assertEquals(1, p.z, EPSILON);
+
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Math.PI*2);
+        p = r.applyRotation(1, 1, 1);
+        assertEquals(1, p.x, EPSILON);
+        assertEquals(1, p.y, EPSILON);
+        assertEquals(1, p.z, EPSILON);
+
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Math.PI*4);
+        p = r.applyRotation(1, 1, 1);
+        assertEquals(1, p.x, EPSILON);
+        assertEquals(1, p.y, EPSILON);
+        assertEquals(1, p.z, EPSILON);
+
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Integer.MIN_VALUE);
+        p =r.applyRotation(1,1,1);
+        assertNotEquals(1, p.x, EPSILON);
+        assertNotEquals(1, p.y, EPSILON);
+        assertNotEquals(1, p.z, EPSILON);
+
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Integer.MAX_VALUE);
+        p =r.applyRotation(1,1,1);
+        assertNotEquals(1, p.x, EPSILON);
+        assertNotEquals(1, p.y, EPSILON);
+        assertNotEquals(1, p.z, EPSILON);
     }
 }
