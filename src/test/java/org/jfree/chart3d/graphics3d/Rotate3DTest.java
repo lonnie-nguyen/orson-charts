@@ -59,4 +59,13 @@ public class Rotate3DTest {
         Point3D p = r.applyRotation(v1.getPoint());
         ViewPoint3D v2 = new ViewPoint3D(p, 0);
     }
+
+    @Test
+    public void test3()  {
+        Rotate3D r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, 0);
+        Point3D p = r.applyRotation(1, 1, 1);
+        assertEquals(1, p.x, EPSILON);
+        assertEquals(1, p.y, EPSILON);
+        assertEquals(1, p.z, EPSILON);
+    }
 }
