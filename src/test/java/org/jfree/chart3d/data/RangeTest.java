@@ -37,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -49,6 +50,11 @@ public class RangeTest {
         Range range1 = new Range(0, 10);
         Range range2 = new Range(0, 10);
         assertEquals(range1, range2);
+		
+		// NEW TESTS ADDED BY MSWE GROUP 
+		assertThrows(IllegalArgumentException.class, () -> {new Range(5.0, 1.0);});
+		Range range3 = new Range(10, 10);
+		//assertTrue(Range.min)
     
         range1 = new Range(2, 4);
         assertNotEquals(range1, range2);
