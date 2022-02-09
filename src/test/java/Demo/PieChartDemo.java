@@ -89,7 +89,7 @@ public class PieChartDemo extends JFrame {
      */
     public PieChartDemo(String title) {
         super(title);
-        addWindowListener(new Exit());
+        addWindowListener(new ExitOnClose());
         getContentPane().add(createDemoPanel());
     }
 
@@ -99,7 +99,7 @@ public class PieChartDemo extends JFrame {
      * @param args  command line arguments (ignored).
      */
     public static void main(String[] args) {
-        PieChartDemo app = new PieChartDemo("OrsonCharts: PieChart3DDemo2.java");
+        PieChartDemo app = new PieChartDemo("OrsonCharts: PieChartDemo.java");
         app.pack();
         app.setVisible(true);
     }
