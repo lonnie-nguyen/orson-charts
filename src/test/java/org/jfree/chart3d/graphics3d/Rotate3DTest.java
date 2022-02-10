@@ -83,13 +83,13 @@ public class Rotate3DTest {
         assertEquals(1, p.y, EPSILON);
         assertEquals(1, p.z, EPSILON);
 
-        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Integer.MIN_VALUE);
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Double.NEGATIVE_INFINITY);
         p =r.applyRotation(1,1,1);
         assertNotEquals(1, p.x, EPSILON);
         assertNotEquals(1, p.y, EPSILON);
         assertNotEquals(1, p.z, EPSILON);
 
-        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Integer.MAX_VALUE);
+        r = new Rotate3D(Point3D.ORIGIN, Point3D.UNIT_X, Double.POSITIVE_INFINITY);
         p =r.applyRotation(1,1,1);
         assertNotEquals(1, p.x, EPSILON);
         assertNotEquals(1, p.y, EPSILON);
