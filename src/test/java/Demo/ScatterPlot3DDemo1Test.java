@@ -50,7 +50,7 @@ class ScatterPlot3DDemo1Test {
         XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
         dataset.add(s1);
 
-        XYZSeries<String> s2 = new XYZSeries<>("S1");
+        XYZSeries<String> s2 = new XYZSeries<>("S2");
         for (int i = 0; i < 1000; i++) {
             s2.add(Math.random() * 100, Math.random() / 100, Math.random() * 100);
         }
