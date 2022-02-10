@@ -50,38 +50,44 @@ class ScatterPlot3DDemo1Test {
         XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
         dataset.add(s1);
 
+        XYZSeries<String> s2 = new XYZSeries<>("S1");
+        for (int i = 0; i < 1000; i++) {
+            s2.add(Math.random() * 100, Math.random() / 100, Math.random() * 100);
+        }
+        XYZSeriesCollection<String> dataset2 = new XYZSeriesCollection<>();
+        dataset.add(s2);
+
         Chart3D chart1 = Chart3DFactory.createScatterChart("Scatter plot Log Axis Test",
                 "Normal to Log axis test", dataset, "X", "Y", "Z");
         Chart3D chart2 = Chart3DFactory.createScatterChart("Scatter plot Log Axis Test",
-                "Log axis", dataset, "X", "Y", "Z");
+                "Normal to Log axis test", dataset2, "X", "Y", "Z");
         XYZPlot plot1 = (XYZPlot) chart1.getPlot();
         XYZPlot plot2 = (XYZPlot) chart2.getPlot();
 
-        NumberAxis3D yAxis = new NumberAxis3D("Y (normal scale)");
-        yAxis.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
-        yAxis.receive(new ChartStyler(chart1.getStyle()));
-        plot1.setYAxis(yAxis);
+        NumberAxis3D yAxis1 = new NumberAxis3D("Y (normal scale)");
+        yAxis1.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
+        yAxis1.receive(new ChartStyler(chart1.getStyle()));
+        plot1.setYAxis(yAxis1);
 
-        yAxis = new NumberAxis3D("Y (normal scale)");
-        yAxis.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
-        yAxis.receive(new ChartStyler(chart2.getStyle()));
-        plot2.setYAxis(yAxis);
+        NumberAxis3D yAxis2 = new NumberAxis3D("Y (normal scale)");
+        yAxis2.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
+        yAxis2.receive(new ChartStyler(chart2.getStyle()));
+        plot2.setYAxis(yAxis2);
 
         plot1.setDimensions(new Dimension3D(10.0, 4.0, 4.0));
         plot2.setDimensions(new Dimension3D(10.0, 4.0, 4.0));
+
         plot1.setLegendLabelGenerator(new StandardXYZLabelGenerator(
                 StandardXYZLabelGenerator.COUNT_TEMPLATE));
         plot2.setLegendLabelGenerator(new StandardXYZLabelGenerator(
                 StandardXYZLabelGenerator.COUNT_TEMPLATE));
-
-        //Chart3D chart = (Chart3D) getChartPanel().getDrawable();
 
         // change axis of chart 1 from normal scale to Logarithmic scale
         LogAxis3D logAxis = new LogAxis3D("Y (logarithmic scale)");
         logAxis.receive(new ChartStyler(chart1.getStyle()));
         plot1.setYAxis(logAxis);
         // test to see if the axis actually changed, ie. chart1 (log) != chart2 (normal axis)
-        assertEquals(chart1, chart2);
+        assertNotEquals(chart1, chart2);
     }
 
 }
