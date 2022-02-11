@@ -87,7 +87,7 @@ class ScatterPlot3DDemo1Test {
         logAxis.receive(new ChartStyler(chart1.getStyle()));
         plot1.setYAxis(logAxis);
         // test to see if the axis actually changed, ie. chart1 (log) != chart2 (normal axis)
-        assertEquals(chart1, chart2);
+        assertNotEquals(plot1.getYAxis(), plot2.getYAxis());
     }
 
 }
