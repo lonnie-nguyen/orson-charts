@@ -82,7 +82,6 @@ public class ExportUtilsTest {
         // Call method
         assertThrows(IllegalStateException.class, () -> ExportUtils.writeAsPDF(chart, 600, 300, file));
 	}
-	
 
 	@Test
 	public void testWriteAsPNG() throws FileNotFoundException, IOException {
@@ -163,5 +162,4 @@ public class ExportUtilsTest {
         assertNotNull(file);
         assertArrayEquals(expected, actual); // Compare byte arrays
 	}
-
 }
