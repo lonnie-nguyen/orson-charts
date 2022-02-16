@@ -40,6 +40,8 @@ import java.awt.MultipleGradientPaint;
 import java.awt.RadialGradientPaint;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -279,5 +281,25 @@ public class ObjectUtilsTest {
                 MultipleGradientPaint.ColorSpaceType.SRGB, 
                 AffineTransform.getTranslateInstance(1.0, 2.0));
         assertTrue(ObjectUtils.equalsPaint(p1, p2));
+    }
+    
+    @Test
+    public void testConstructor() {
+    	ObjectUtils objectUtils = new ObjectUtils();
+    }
+    
+    @Test
+    public void testHashCode() {
+    	// Object is null
+    	int actualHashCode = ObjectUtils.hashCode(null);
+    	assertEquals(0, actualHashCode);
+    	
+    	// Object is not null
+    	String s1 = "test";
+    	String s2 = "test";
+    	int hashCode1 = ObjectUtils.hashCode(s1);
+    	int hashCode2 = ObjectUtils.hashCode(s2);
+    	assertEquals(s1, s2);
+    	assertEquals(hashCode1, hashCode2);
     }
 }
