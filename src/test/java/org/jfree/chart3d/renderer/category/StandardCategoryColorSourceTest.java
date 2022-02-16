@@ -32,7 +32,9 @@
 
 package org.jfree.chart3d.renderer.category;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import java.awt.Color;
@@ -47,6 +49,7 @@ public class StandardCategoryColorSourceTest {
     public void testEquals() {
         StandardCategoryColorSource s1 = new StandardCategoryColorSource();
         StandardCategoryColorSource s2 = new StandardCategoryColorSource();
+        assertTrue(s1.equals(s1)); // Test first if statement
         assertTrue(s1.equals(s2));
         assertFalse(s1.equals(null));
         
@@ -62,6 +65,67 @@ public class StandardCategoryColorSourceTest {
         StandardCategoryColorSource s2 = (StandardCategoryColorSource) 
                 TestUtils.serialized(s1);
         assertTrue(s1.equals(s2));
+    }
+    
+    @Test
+    public void testStandardCategoryColorSource() {
+    	// Check for zero length array
+    	Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    		StandardCategoryColorSource s1 = new StandardCategoryColorSource(new Color[] {});
+    	});
+    	String expectedMsg = "Zero length array not permitted.";
+    	String actualMsg = exception.getMessage();
+    	assertEquals(expectedMsg, actualMsg);
+    	
+    	// Check for null value in array
+    	exception = assertThrows(IllegalArgumentException.class, () -> {
+    		StandardCategoryColorSource s1 = new StandardCategoryColorSource(new Color[] { Color.BLUE, null });
+    	});
+    	expectedMsg = "Null array entries not permitted.";
+    	actualMsg = exception.getMessage();
+    	assertEquals(expectedMsg, actualMsg);
+    }
+    
+    @Test
+    public void testStyle() {
+    	// Check for zero length array
+    	StandardCategoryColorSource s1 = new StandardCategoryColorSource();
+    	Exception exception = assertThrows(IllegalArgumentException.class, () -> 
+    		s1.style(new Color[] {}));
+    	String expectedMsg = "Zero length array not permitted.";
+    	String actualMsg = exception.getMessage();
+    	assertEquals(expectedMsg, actualMsg);
+    	
+    	// Check for null value in array
+    	exception = assertThrows(IllegalArgumentException.class, () -> 
+    		s1.style(new Color[] {Color.BLUE, null }));
+    	expectedMsg = "Null array entries not permitted.";
+    	actualMsg = exception.getMessage();
+    	assertEquals(expectedMsg, actualMsg);
+    }
+    
+    @Test
+    public void testGetColor() {
+    	StandardCategoryColorSource s1 = new StandardCategoryColorSource(new Color[] { Color.BLUE, Color.RED });
+    	Color expectedColor = Color.BLUE;
+    	Color actualColor = s1.getColor(0, 0, 1);
+    	assertEquals(expectedColor, actualColor);
+    }
+    
+    @Test
+    public void testGetLegendColor() {
+    	StandardCategoryColorSource s1 = new StandardCategoryColorSource(new Color[] { Color.BLUE, Color.RED });
+    	Color expectedColor = Color.BLUE;
+    	Color actualColor = s1.getLegendColor(0);
+    	assertEquals(expectedColor, actualColor);
+    }
+    
+    @Test
+    public void testHashCode() {
+    	StandardCategoryColorSource s1 = new StandardCategoryColorSource();
+    	StandardCategoryColorSource s2 = new StandardCategoryColorSource();
+    	assertEquals(s1, s2);
+    	assertEquals(s1.hashCode(), s2.hashCode());
     }
         
 }
