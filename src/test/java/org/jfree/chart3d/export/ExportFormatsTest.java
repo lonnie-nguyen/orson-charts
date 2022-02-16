@@ -8,7 +8,6 @@ public class ExportFormatsTest {
 	
 	@Test
 	public void testConstructor() {
-		// Not in classpath expect False
 		ExportFormats ef = new ExportFormats();
 	}
 
