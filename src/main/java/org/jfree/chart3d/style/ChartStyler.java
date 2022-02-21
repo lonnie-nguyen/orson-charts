@@ -246,7 +246,7 @@ public class ChartStyler implements ChartElementVisitor {
     
     /**
      * Applies the current style to an XYZ renderer.
-     * 
+     * ..
      * @param renderer  the renderer ({@code null} not permitted). 
      */
     protected void styleXYZRenderer(XYZRenderer renderer) {
