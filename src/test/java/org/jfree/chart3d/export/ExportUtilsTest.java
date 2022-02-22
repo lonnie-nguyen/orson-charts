@@ -84,7 +84,7 @@ public class ExportUtilsTest {
 	}
 
 	@Test
-	public void testWriteAsPNG() throws FileNotFoundException, IOException {
+	public void testWriteAsPNG() throws IOException {
 		// Create Pie Chart
 		StandardPieDataset3D<String> dataset = new StandardPieDataset3D<>();
         dataset.add("Milk Products", 11625);
@@ -124,7 +124,7 @@ public class ExportUtilsTest {
 	}
 
 	@Test
-	public void testWriteAsJPEG() throws FileNotFoundException, IOException {
+	public void testWriteAsJPEG() throws IOException {
 		// Create Pie Chart
 		StandardPieDataset3D<String> dataset = new StandardPieDataset3D<>();
         dataset.add("Milk Products", 11625);
@@ -156,7 +156,7 @@ public class ExportUtilsTest {
         BufferedImage piechart2jpg = ImageIO.read(new File("piechart2.JPEG"));
         
         // Get pixel data of BufferedImages as byte array
-        byte[] actual = ((DataBufferByte) piechart1jpg.getData().getDataBuffer()).getData();
+        byte[] actual   = ((DataBufferByte) piechart1jpg.getData().getDataBuffer()).getData();
         byte[] expected = ((DataBufferByte) piechart2jpg.getData().getDataBuffer()).getData();
 		
         assertNotNull(file);
