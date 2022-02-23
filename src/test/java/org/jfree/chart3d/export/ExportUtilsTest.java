@@ -113,7 +113,7 @@ public class ExportUtilsTest {
         File file = new File("piechart1." + ExportFormat.PNG);
         File file2 = new File("piechart2." + ExportFormat.PNG);
         
-        // Call method
+        // Call methods
 		ExportUtils.writeAsPNG(chart, 600, 300, file);
 
         // Get a BufferedImage from actual and expected png image files and compare their RGB arrays
