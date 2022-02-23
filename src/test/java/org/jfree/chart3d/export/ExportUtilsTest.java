@@ -7,6 +7,7 @@ import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -17,6 +18,8 @@ import org.jfree.chart3d.TitleAnchor;
 import org.jfree.chart3d.data.StandardPieDataset3D;
 import org.jfree.chart3d.legend.LegendAnchor;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 public class ExportUtilsTest {
 	
@@ -84,6 +87,7 @@ public class ExportUtilsTest {
 	}
 
 	@Test
+    @EnabledOnOs({OS.WINDOWS})
 	public void testWriteAsPNG() throws IOException {
 		// Create Pie Chart
 		StandardPieDataset3D<String> dataset = new StandardPieDataset3D<>();
@@ -114,12 +118,23 @@ public class ExportUtilsTest {
         // Get a BufferedImage from actual and expected png image files and compare their RGB arrays
         BufferedImage piechart1png = ImageIO.read(new File("piechart1.PNG"));
         BufferedImage piechart2png = ImageIO.read(new File("piechart2.PNG"));
-        
+
+        int w1 = piechart1png.getWidth();
+        int h1 = piechart1png.getHeight();
+        int[] RGBarray1 = piechart1png.getRGB(0,0,w1,h1,null,0,w1);
+
+        int w2 = piechart2png.getWidth();
+        int h2 = piechart2png.getHeight();
+        int[] RGBarray2 = piechart2png.getRGB(0,0,w2,h2,null,0,w2);
+
+        assertArrayEquals(RGBarray1,RGBarray2);
+
         assertNotNull(file);
 
 	}
 
 	@Test
+    @EnabledOnOs({OS.WINDOWS})
 	public void testWriteAsJPEG() throws IOException {
 		// Create Pie Chart
 		StandardPieDataset3D<String> dataset = new StandardPieDataset3D<>();
