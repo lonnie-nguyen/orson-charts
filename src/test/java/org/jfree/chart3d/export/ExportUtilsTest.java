@@ -111,6 +111,7 @@ public class ExportUtilsTest {
         
         // Create PNG file
         File file = new File("piechart1." + ExportFormat.PNG);
+        File file2 = new File("piechart2." + ExportFormat.PNG);
         
         // Call method
 		ExportUtils.writeAsPNG(chart, 600, 300, file);
@@ -158,6 +159,7 @@ public class ExportUtilsTest {
         
         // Create JPEG file
         File file = new File("piechart1." + ExportFormat.JPEG);
+        File file2 = new File("piechart2." + ExportFormat.JPEG);
 		
         // Call method
         ExportUtils.writeAsJPEG(chart, 600, 300, file);
@@ -179,6 +181,4 @@ public class ExportUtilsTest {
         assertNotNull(file);
 
 	}
-
-
 }
