@@ -111,17 +111,12 @@ public class ExportUtilsTest {
         // Call method
 		ExportUtils.writeAsPNG(chart, 600, 300, file);
 
-        // Get a BufferedImage from actual and expected png image files
+        // Get a BufferedImage from actual and expected png image files and compare their RGB arrays
         BufferedImage piechart1png = ImageIO.read(new File("piechart1.PNG"));
         BufferedImage piechart2png = ImageIO.read(new File("piechart2.PNG"));
         
-        // Get pixel data of BufferedImages as byte array
-//        byte[] actual = ((DataBufferByte) piechart1png.getData().getDataBuffer()).getData();
-//        byte[] expected = ((DataBufferByte) piechart2png.getData().getDataBuffer()).getData();
-//        assertArrayEquals(expected, actual); // Compare byte arrays
-
         assertNotNull(file);
-        assertTrue(compareImages(piechart1png, piechart2png));
+
 	}
 
 	@Test
@@ -152,40 +147,23 @@ public class ExportUtilsTest {
         // Call method
         ExportUtils.writeAsJPEG(chart, 600, 300, file);
 
-        // Get a BufferedImage from actual and expected jpeg image files
+        // Get a BufferedImage from actual and expected jpeg image files and compare their RGB arrays
         BufferedImage piechart1jpg = ImageIO.read(new File("piechart1.JPEG"));
         BufferedImage piechart2jpg = ImageIO.read(new File("piechart2.JPEG"));
-        
-        // Get pixel data of BufferedImages as byte array
-        //byte[] actual   = ((DataBufferByte) piechart1jpg.getData().getDataBuffer()).getData();
-        //byte[] expected = ((DataBufferByte) piechart2jpg.getData().getDataBuffer()).getData();
-		
+
+        int w1 = piechart1jpg.getWidth();
+        int h1 = piechart1jpg.getHeight();
+        int[] RGBarray1 = piechart1jpg.getRGB(0,0,w1,h1,null,0,w1);
+
+        int w2 = piechart2jpg.getWidth();
+        int h2 = piechart2jpg.getHeight();
+        int[] RGBarray2 = piechart2jpg.getRGB(0,0,w2,h2,null,0,w2);
+
+        assertArrayEquals(RGBarray1,RGBarray2);
+
         assertNotNull(file);
-        assertTrue(compareImages(piechart1jpg, piechart2jpg));
-//        assertArrayEquals(expected, actual); // Compare byte arrays
+
 	}
-
-
-    public static boolean compareImages(BufferedImage imgA, BufferedImage imgB) {
-        // cite code source: https://stackoverflow.com/a/29886786/16460806
-        if (imgA.getWidth() != imgB.getWidth() || imgA.getHeight() != imgB.getHeight()) {
-            return false;
-        }
-        int width  = imgA.getWidth();
-        int height = imgA.getHeight();
-
-        // Loop over every pixel.
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                // Compare the pixels for equality.
-                if (imgA.getRGB(x, y) != imgB.getRGB(x, y)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
 
 
 }
