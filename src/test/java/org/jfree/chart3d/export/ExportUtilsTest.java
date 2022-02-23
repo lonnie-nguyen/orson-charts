@@ -122,11 +122,13 @@ public class ExportUtilsTest {
 
         int w1 = piechart1png.getWidth();
         int h1 = piechart1png.getHeight();
-        int[] RGBarray1 = piechart1png.getRGB(0,0,w1,h1,null,0,w1);
+        int[] RGBarray1 = new int[w1 * h1];
+        piechart1png.getRGB(0,0,w1,h1,RGBarray1,0,w1);
 
         int w2 = piechart2png.getWidth();
         int h2 = piechart2png.getHeight();
-        int[] RGBarray2 = piechart2png.getRGB(0,0,w2,h2,null,0,w2);
+        int[] RGBarray2 = new int[w2 * h2];
+        piechart2png.getRGB(0,0,w2,h2,RGBarray2,0,w2);
 
         assertArrayEquals(RGBarray1,RGBarray2);
 
