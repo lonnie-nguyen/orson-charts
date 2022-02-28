@@ -1,6 +1,5 @@
 package Demo;
 
-
 import org.jfree.chart3d.Chart3D;
 import org.jfree.chart3d.Chart3DFactory;
 import org.jfree.chart3d.axis.LabelOrientation;
@@ -22,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Tests for the ScatterPlot3DDemo1 class.
  */
-class ScatterPlot3DDemo1Test {
+public class ScatterPlot3DDemo1Test {
 
     @Test
     public void checkEquals(){
