@@ -32,9 +32,6 @@
 
 package org.jfree.chart3d;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -50,6 +47,8 @@ import org.jfree.chart3d.legend.LegendAnchor;
 import org.jfree.chart3d.legend.StandardLegendBuilder;
 import org.jfree.chart3d.style.ChartStyles;
 import org.jfree.chart3d.table.StandardRectanglePainter;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for the {@link Chart3D} class.
@@ -265,5 +264,16 @@ public class Chart3DTest {
         XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
         dataset.add(s1);
         return dataset;
+    }
+
+    @Test
+    public void checkChart3DColor() {
+        Color chartBoxColor1 = Chart3DColor.COLOR;
+        Color chartBoxColor2 = Chart3DColor.COLOR;
+        Color chartBoxColor3 = Chart3DColor.RED;
+        Color chartBoxColor4 = Color.RED;
+        assertEquals(chartBoxColor1,chartBoxColor2);
+        assertNotEquals(chartBoxColor1, chartBoxColor3);
+        assertNotEquals(chartBoxColor3, chartBoxColor4);
     }
 }
