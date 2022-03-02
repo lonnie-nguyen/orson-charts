@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 
 public class TextUtilsTest {
-    private FontMetrics fm;
+    public FontMetrics fm;
 
     @BeforeEach
     public void setup() {
