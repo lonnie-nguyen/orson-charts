@@ -39,7 +39,7 @@ class Chart3DFactoryTest {
                     "Z", log_axis);
             plot = (XYZPlot) chartNormalAxis.getPlot();
             assertNotNull(chartNormalAxis);
-            // assert log axis
+            // assert normal axis
             axisType = plot.getXAxis().getClass().getSimpleName();
             assertEquals(axisType,"NumberAxis3D");
         }
