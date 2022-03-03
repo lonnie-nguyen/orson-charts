@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Chart3DFactoryTest {
+public class Chart3DFactoryTest {
 
     @Test
     void testCreateScatterNormalAndLog() {
@@ -43,6 +43,5 @@ class Chart3DFactoryTest {
             axisType = plot.getXAxis().getClass().getSimpleName();
             assertEquals(axisType,"NumberAxis3D");
         }
-
 
     }
