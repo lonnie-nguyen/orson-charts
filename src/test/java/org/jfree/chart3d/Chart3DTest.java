@@ -266,14 +266,4 @@ public class Chart3DTest {
         return dataset;
     }
 
-    @Test
-    public void checkChart3DColor() {
-        Color chartBoxColor1 = Chart3DColor.COLOR;
-        Color chartBoxColor2 = Chart3DColor.COLOR;
-        Color chartBoxColor3 = Chart3DColor.RED;
-        Color chartBoxColor4 = Color.RED;
-        assertEquals(chartBoxColor1,chartBoxColor2);
-        assertNotEquals(chartBoxColor1, chartBoxColor3);
-        assertNotEquals(chartBoxColor3, chartBoxColor4);
-    }
 }
