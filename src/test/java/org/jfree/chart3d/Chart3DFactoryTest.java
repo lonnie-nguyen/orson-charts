@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Chart3DFactoryTest {
 
     @Test
-    void testCreateScatterNormalAndLog() {
+    public void testCreateScatterNormalAndLog() {
             XYZSeries<String> s1 = new XYZSeries<>("s1");
             for (int i = 0; i < 10; i++) {
                 s1.add(Math.random() * 100, Math.random() / 100, Math.random() * 100);
