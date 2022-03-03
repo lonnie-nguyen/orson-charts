@@ -32,11 +32,7 @@
 
 package org.jfree.chart3d;
 
-import org.jfree.chart3d.axis.CategoryAxis3D;
-import org.jfree.chart3d.axis.LabelOrientation;
-import org.jfree.chart3d.axis.NumberAxis3D;
-import org.jfree.chart3d.axis.StandardCategoryAxis3D;
-import org.jfree.chart3d.axis.ValueAxis3D;
+import org.jfree.chart3d.axis.*;
 import org.jfree.chart3d.data.PieDataset3D;
 import org.jfree.chart3d.data.Range;
 import org.jfree.chart3d.data.category.CategoryDataset3D;
@@ -319,7 +315,32 @@ public class Chart3DFactory {
         XYZPlot plot = new XYZPlot(dataset, renderer, xAxis, yAxis, zAxis);
         return new Chart3D(title, subtitle, plot);
     }
-    
+
+
+    public static Chart3D createScatterChartNormalOrLog(String title, String subtitle,
+                                             XYZDataset dataset, String xAxisLabel, String yAxisLabel,
+                                             String zAxisLabel,
+                                             boolean logAxis) {
+        NumberAxis3D zAxis = new NumberAxis3D(zAxisLabel);
+        XYZRenderer renderer = new ScatterXYZRenderer();
+        if (!logAxis) {
+            // create normal axis
+            NumberAxis3D xAxis = new NumberAxis3D(xAxisLabel);
+            NumberAxis3D yAxis = new NumberAxis3D(yAxisLabel);
+            yAxis.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
+            XYZPlot plot = new XYZPlot(dataset, renderer, xAxis, yAxis, zAxis);
+            return new Chart3D(title, subtitle, plot);
+        } else {
+            // else create log axis
+            LogAxis3D xAxis = new LogAxis3D(xAxisLabel);
+            LogAxis3D yAxis = new LogAxis3D(yAxisLabel);
+            yAxis.setTickLabelOrientation(LabelOrientation.PERPENDICULAR);
+            XYZPlot plot = new XYZPlot(dataset, renderer, xAxis, yAxis, zAxis);
+            return new Chart3D(title, subtitle, plot);
+        }
+    }
+
+
     /**
      * Creates a surface chart for the specified function.
      * <br><br>
