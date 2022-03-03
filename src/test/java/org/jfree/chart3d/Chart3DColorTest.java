@@ -6,7 +6,7 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Test;
 
-class Chart3DColorTest {
+public class Chart3DColorTest {
 
     @Test
     public void testChart3DColor() {
