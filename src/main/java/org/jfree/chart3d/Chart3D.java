@@ -294,7 +294,7 @@ public class Chart3D implements Drawable3D, ChartElement,
         float distance = (float) dim.getDiagonalLength() * 3.0f;
         this.viewPoint = ViewPoint3D.createAboveViewPoint(distance);
         this.projDist = DEFAULT_PROJ_DIST;
-        this.chartBoxColor = Chart3DColor.COLOR;
+        this.chartBoxColor = new Color(253, 127, 127, 100);
         this.translate2D = new Offset2D();
         this.faceSorter = new StandardFaceSorter();
         this.renderingHints = new RenderingHints(
